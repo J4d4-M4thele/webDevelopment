@@ -18,19 +18,17 @@ import Container from 'react-bootstrap/Container';
 
 
 const MoviesList = props => {
-   //default or initial state
+
    const [movies, setMovies] = useState([])
    const [searchTitle, setSearchTitle] = useState("")
    const [searchRating, setSearchRating] = useState("")
    const [ratings, setRatings] = useState(["All Ratings"])
-   
-   //hook only calls functions on first render
+
    useEffect(() => {
       retrieveMovies()
       retrieveRatings()
    }, [])
-   
-   //getting all movies
+
    const retrieveMovies = () => {
       MovieDataService.getAll()
          .then(response => {
@@ -41,7 +39,7 @@ const MoviesList = props => {
             console.log(e)
          })
    }
-   //getting all ratings
+
    const retrieveRatings = () => {
       MovieDataService.getRatings()
          .then(response => {
@@ -52,12 +50,12 @@ const MoviesList = props => {
             console.log(e)
          })
    }
-   //called as user types into search bar
+
    const onChangeSearchTitle = e => {
       const searchTitle = e.target.value
       setSearchTitle(searchTitle);
    }
-   //called as user selects rating
+
    const onChangeSearchRating = e => {
       const searchRating = e.target.value
       setSearchRating(searchRating);
@@ -157,5 +155,6 @@ const MoviesList = props => {
       </div>
    );
 }
+
 
 export default MoviesList;
