@@ -65,7 +65,7 @@ const Movie = props => {
                      return (
                         <Media key={index}>
                            <Media.Body>
-                              {/* username and date posted */}
+                              {/* username and date posted. date is formatteed */}
                               <h5>{review.name + " reviewed on "} {moment(review.date).format("Do MMMM YYYY")}</h5>
                               <p>{review.review}</p>
                               {props.user && props.user.id === review.user_id &&
