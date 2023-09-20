@@ -37,6 +37,7 @@ const Movie = props => {
 
    return (
       <div>
+         {/* card to display a specific movie's information */}
          <Container>
             <Row>
                <Col>
