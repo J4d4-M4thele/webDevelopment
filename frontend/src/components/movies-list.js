@@ -8,15 +8,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-// function MoviesList() {
-//    return(
-//       <div className="App">
-//          Movies List
-//       </div>
-//    );
-// }
-
-
 const MoviesList = props => {
 
    const [movies, setMovies] = useState([])
