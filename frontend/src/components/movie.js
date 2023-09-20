@@ -59,6 +59,7 @@ const Movie = props => {
                   <br></br>
                   <h2>Reviews</h2>
                   <br></br>
+                  {/* mapping reviews for movie*/}
                   {movie.reviews.map((review, index) => {
                      return (
                         <Media key={index}>
