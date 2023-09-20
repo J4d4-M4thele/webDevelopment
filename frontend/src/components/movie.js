@@ -64,17 +64,21 @@ const Movie = props => {
                      return (
                         <Media key={index}>
                            <Media.Body>
+                              {/* username and date posted */}
                               <h5>{review.name + " reviewed on " + review.date}</h5>
                               <p>{review.review}</p>
                               {props.user && props.user.id === review.user_id &&
                                  <Row>
                                     <Col><Link to={{
+                                       // path for reviews
                                        pathname: "/movies/" +
                                           props.match.params.id +
                                           "/review",
                                        state: { currentReview: review }
+                                       //link to edit
                                     }}>Edit</Link>
                                     </Col>
+                                    {/* link to delete */}
                                     <Col><Button variant="link">Delete</Button></Col>
                                  </Row>
                               }
