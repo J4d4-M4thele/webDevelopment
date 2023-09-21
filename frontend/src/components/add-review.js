@@ -29,8 +29,7 @@ const AddReview = props => {
          review: review,
          name: props.user.name,
          user_id: props.user.id,
-         //get movie from direct url
-         movie_id: props.match.params.id
+         movie_id: props.match.params.id // get movie id direct from url
       }
    }
 
