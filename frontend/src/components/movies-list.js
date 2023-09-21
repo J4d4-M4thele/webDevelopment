@@ -27,11 +27,12 @@ const MoviesList = props => {
       retrieveRatings()
    }, [])
    
+   //retrieve next page is rendered once only
    useEffect(() => {
       //retrieveMovies()
       retrieveNextPage()
    }, [currentPage])
-   
+   //uses if logic to invoke functions
    const retrieveNextPage = () => {
       if(currentSearchMode === 'findByTitle')
         findByTitle()
