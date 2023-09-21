@@ -38,7 +38,7 @@ const AddReview = props => {
 
    return (
       <div>
-         {/* usesa ternary operator */}
+         {/* uses a ternary operator */}
          
       </div>
    );
