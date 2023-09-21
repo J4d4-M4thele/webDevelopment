@@ -14,7 +14,7 @@ const MoviesList = props => {
    const [searchTitle, setSearchTitle] = useState("")
    const [searchRating, setSearchRating] = useState("")
    const [ratings, setRatings] = useState(["All Ratings"])
-   
+
    //specifying pages 
    const [currentPage, setCurrentPage] = useState(0)
    const [entriesPerPage, setEntriesPerPage] = useState(0)
@@ -23,7 +23,7 @@ const MoviesList = props => {
       retrieveMovies()
       retrieveRatings()
    }, [])
-   
+
    useEffect(() => {
       retrieveMovies()
    }, [currentPage])
@@ -154,7 +154,9 @@ const MoviesList = props => {
             </Row>
             <br />
             Showing page : {currentPage}
-            <Button>
+            <Button
+               variant='link'
+               onClick={() => { setCurrentPage(currentPage + 1) }}>
                Get next {entriesPerPage} results
             </Button>
          </Container>
