@@ -19,14 +19,27 @@ const MoviesList = props => {
    const [currentPage, setCurrentPage] = useState(0)
    const [entriesPerPage, setEntriesPerPage] = useState(0)
 
+   //assist in getting next page's movies
+   const [currentSearchMode, setCurrentSearchMode] = useState('')
+
    useEffect(() => {
       retrieveMovies()
       retrieveRatings()
    }, [])
 
    useEffect(() => {
-      retrieveMovies()
+      //retrieveMovies()
+      retrieveNextPage()
    }, [currentPage])
+   
+   const retrieveNextPage = () => {
+      if(currentSearchMode === 'findByTitle')
+        findByTitle()
+      else if(currentSearchMode === 'findByRating')
+        findByRating()
+      else 
+       retrieveMovies()
+   }
 
    const retrieveMovies = () => {
       MovieDataService.getAll()
