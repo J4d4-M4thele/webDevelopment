@@ -155,7 +155,7 @@ const MoviesList = props => {
             <br />
             Showing page : {currentPage}
             <Button>
-               Get next {}
+               Get next {entriesPerPage} results
             </Button>
          </Container>
       </div>
