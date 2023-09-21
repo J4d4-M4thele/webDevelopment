@@ -8,6 +8,12 @@ const AddReview = props => {
 
    let editing = false
    let initialReviewState = ''
+   
+   //checks state to allow for editting to occur
+   if (props.location.state && props.location.state.currentReview) {
+      editing = true
+      initialReviewState = props.location.state.currentReview.review
+   }
 
    const [review, setReview] = useState(initialReviewState)
    //keeps track if review's submitted
