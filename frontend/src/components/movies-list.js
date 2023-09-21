@@ -26,7 +26,7 @@ const MoviesList = props => {
       retrieveMovies()
       retrieveRatings()
    }, [])
-
+   
    useEffect(() => {
       //retrieveMovies()
       retrieveNextPage()
@@ -78,7 +78,7 @@ const MoviesList = props => {
 
 
 
-   const find = (query, by) => {
+   const find = (query, by, currentPage) => {
       MovieDataService.find(query, by)
          .then(response => {
             console.log(response.data)
