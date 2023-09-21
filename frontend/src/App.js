@@ -33,7 +33,7 @@ function App() {
               <Link to={'/movies'}>Movies</Link>
             </Nav.Link>
             <Nav.Link>
-              {user ? (<a onClick={'logout'}>Logout User</a>) : (<Link to={"/login"}>Login</Link>)}
+              {user ? (<a onClick={logout}>Logout User</a>) : (<Link to={"/login"}>Login</Link>)}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
