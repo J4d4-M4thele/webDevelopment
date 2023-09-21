@@ -31,31 +31,32 @@ const AddReview = props => {
          user_id: props.user.id,
          movie_id: props.match.params.id // get movie id direct from url
       }
+
+      if (editing) {
+         // get existing review id
+         data.review_id = props.location.state.currentReview._id
+         MovieDataService.updateReview(data)
+            .then(response => {
+               setSubmitted(true);
+               console.log(response.data)
+            })
+            .catch(e => {
+               console.log(e);
+            })
+      }
+      else {
+         //create a new review
+         MovieDataService.createReview(data)
+            .then(response => {
+               setSubmitted(true)
+               console.log(response.data)
+            })
+            .catch(e => {
+               console.log(e);
+            })
+      }
    }
 
-   if (editing) {
-      // get existing review id
-      data.review_id = props.location.state.currentReview._id
-      MovieDataService.updateReview(data)
-         .then(response => {
-            setSubmitted(true);
-            console.log(response.data)
-         })
-         .catch(e => {
-            console.log(e);
-         })
-   }
-   else {
-      //create a new review
-      MovieDataService.createReview(data)
-         .then(response => {
-            setSubmitted(true)
-            console.log(response.data)
-         })
-         .catch(e => {
-            console.log(e);
-         })
-   }
 
    return (
       <div>
