@@ -27,25 +27,40 @@ const AddReview = props => {
          movie_id: props.match.params.id
       }
    }
-   
+
    MovieDataService.createReview(data)
-   .then(response => {
-      setSubmitted(true)
-   })
-   .catch(e => {
-      console.log(e)
-   })
+      .then(response => {
+         setSubmitted(true)
+      })
+      .catch(e => {
+         console.log(e)
+      })
 
    return (
       <div>
          {/* uses a ternary operator */}
-         { submitted ? (
-           <div>
-            <h4>Review submitted successfully</h4>
-            <Link to={'/movies'+props.match.params.id}>
-               Back to Movie
-            </Link>
-           </div>
+         {submitted ? (
+            <div>
+               <h4>Review submitted successfully</h4>
+               <Link to={'/movies' + props.match.params.id}>
+                  Back to Movie
+               </Link>
+            </div>
+         ) : (
+            <Form>
+               <Form.Group>
+                  <Form.Label>{editing ? "Edit" : "Create"} Review</Form.Label>
+                  <Form.Control
+                     type="text"
+                     required
+                     value={review}
+                     onChange={onChangeReview}
+                  />
+               </Form.Group>
+               <Button variant="primary" onClick={saveReview}>
+                  Submit
+               </Button>
+            </Form>
          )}
       </div>
    )
