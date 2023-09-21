@@ -43,6 +43,8 @@ const MoviesList = props => {
    }
 
    const retrieveMovies = () => {
+      //ch 24
+      setCurrentSearchMode('')
       MovieDataService.getAll()
          .then(response => {
             console.log(response.data)
@@ -91,9 +93,11 @@ const MoviesList = props => {
    }
    // find function sypported by below two methods
    const findByTitle = () => {
+      setCurrentSearchMode("findByTitle")
       find(searchTitle, "title")
    }
    const findByRating = () => {
+      setCurrentSearchMode("findByRating")
       if (searchRating === "All Ratings") {
          retrieveMovies()
       }
