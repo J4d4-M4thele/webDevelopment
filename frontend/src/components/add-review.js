@@ -35,9 +35,9 @@ const AddReview = props => {
    .catch(e => {
       console.log(e)
    })
-   
+
    return (
-      <div className="App">
+      <div>
          Add Review
       </div>
    );
