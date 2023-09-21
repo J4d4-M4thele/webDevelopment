@@ -93,10 +93,12 @@ const MoviesList = props => {
    }
    // find function sypported by below two methods
    const findByTitle = () => {
+      //ch 24
       setCurrentSearchMode("findByTitle")
       find(searchTitle, "title")
    }
    const findByRating = () => {
+      //ch 24
       setCurrentSearchMode("findByRating")
       if (searchRating === "All Ratings") {
          retrieveMovies()
