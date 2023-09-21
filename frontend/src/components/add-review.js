@@ -47,6 +47,7 @@ const AddReview = props => {
          })
    }
    else {
+      //create a new review
       MovieDataService.createReview(data)
          .then(response => {
             setSubmitted(true)
