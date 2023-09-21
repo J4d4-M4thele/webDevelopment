@@ -64,7 +64,7 @@ const AddReview = props => {
          {submitted ? (
             <div>
                <h4>Review submitted successfully</h4>
-               <Link to={'/movies' + props.match.params.id}>
+               <Link to={'/movies/' + props.match.params.id}>
                   Back to Movie
                </Link>
             </div>
