@@ -20,18 +20,23 @@ const MoviesList = props => {
    const [entriesPerPage, setEntriesPerPage] = useState(0)
 
    //assist in getting next page's movies
-   const [currentSearchMode, setCurrentSearchMode] = useState('')
+   const [currentSearchMode, setCurrentSearchMode] = useState("")
+
+   useEffect(() => {
+      setCurrentPage(0)
+   }, [currentSearchMode])
+
+   //retrieve next page is rendered once only
+   useEffect(() => {
+      // retrieveMovies()
+      retrieveNextPage()
+   }, [currentPage])
 
    useEffect(() => {
       retrieveMovies()
       retrieveRatings()
    }, [])
    
-   //retrieve next page is rendered once only
-   useEffect(() => {
-      //retrieveMovies()
-      retrieveNextPage()
-   }, [currentPage])
    //uses if logic to invoke functions
    const retrieveNextPage = () => {
       if(currentSearchMode === 'findByTitle')
@@ -172,14 +177,14 @@ const MoviesList = props => {
                   )
                })}
             </Row>
-            <br />
+         </Container>
+         <br />
             Showing page : {currentPage}
             <Button
                variant='link'
                onClick={() => { setCurrentPage(currentPage + 1) }}>
                Get next {entriesPerPage} results
             </Button>
-         </Container>
       </div>
    );
 }
