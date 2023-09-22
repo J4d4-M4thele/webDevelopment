@@ -22,11 +22,16 @@ const MoviesList = props => {
 
    useEffect(() => {
       setCurrentPage(0)
+      //page is changed and can be filtered according title etc.
+      // eslint-disable-next-line 
    }, [currentSearchMode])
+
    //retrieve next page is rendered once only
    useEffect(() => {
       // retrieveMovies()
       retrieveNextPage()
+      //passing current page
+      // eslint-disable-next-line 
    }, [currentPage])
 
    //uses if logic to invoke functions
@@ -42,6 +47,8 @@ const MoviesList = props => {
    useEffect(() => {
       retrieveMovies()
       retrieveRatings()
+      //empty array used to invoke functions only once
+      // eslint-disable-next-line 
    }, [])
 
    
