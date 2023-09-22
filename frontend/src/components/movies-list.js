@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import MovieDataService from "../services/movies";
 import { Link } from "react-router-dom";
-import { Form, Button, Col, Row, Container, Card } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 
 const MoviesList = props => {
@@ -17,17 +22,18 @@ const MoviesList = props => {
 
    useEffect(() => {
       setCurrentPage(0)
-   }, [currentSearchMode])//add useEffect whenever currentSearchMode changes
-
+   }, [currentSearchMode])
+   //retrieve next page is rendered once only
    useEffect(() => {
-      //  retrieveMovies()
-        retrieveNextPage()
-     }, [currentPage])//when currentPage changes value: retrieveMovies will be called
+      // retrieveMovies()
+      retrieveNextPage()
+   }, [currentPage])
 
-     const retrieveNextPage = () => {
-      if (currentSearchMode === "findByTitle")
+   //uses if logic to invoke functions
+   const retrieveNextPage = () => {
+      if (currentSearchMode === 'findByTitle')
          findByTitle()
-      else if (currentSearchMode === "findByRating")
+      else if (currentSearchMode === 'findByRating')
          findByRating()
       else
          retrieveMovies()
