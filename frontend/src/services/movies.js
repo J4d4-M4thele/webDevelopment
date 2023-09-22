@@ -7,6 +7,11 @@ class MovieDataService {
     get(id) {
         return axios.get(`http://localhost:5000/api/v1/movies/id/${id}`)
     }
+    // find(title) {
+    //     return axios.get(
+    //         `http://localhost:5000/api/v1/movies?title=${title}`
+    //     )
+    // }
     find(query, by = "title", page = 0, rating) {
         return axios.get(
             `http://localhost:5000/api/v1/movies?${by}=${query}&page=${page}&rating=${rating}`
