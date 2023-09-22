@@ -22,7 +22,6 @@ const MoviesList = props => {
    useEffect(() => {
       //  retrieveMovies()
         retrieveNextPage()
-        // eslint-disable-next-line
      }, [currentPage])//when currentPage changes value: retrieveMovies will be called
 
      const retrieveNextPage = () => {
@@ -37,7 +36,6 @@ const MoviesList = props => {
    useEffect(() => {
       retrieveMovies()
       retrieveRatings()
-       // eslint-disable-next-line
    }, [])
 
    
