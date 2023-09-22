@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import MovieDataService from "../services/movies";
-import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import MovieDataService from '../services/movies';
+import { Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+
 
 const AddReview = props => {
 
@@ -64,7 +64,7 @@ const AddReview = props => {
          {submitted ? (
             <div>
                <h4>Review submitted successfully</h4>
-               <Link to={'/movies/' + props.match.params.id}>
+               <Link to={'/movies' + props.match.params.id}>
                   Back to Movie
                </Link>
             </div>

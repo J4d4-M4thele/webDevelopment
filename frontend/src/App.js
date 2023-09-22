@@ -1,21 +1,18 @@
-import React, { Component } from 'react'
-import { Switch, Route, Link } from "react-router-dom"
-import "bootstrap/dist/css/bootstrap.min.css"
+import './App.css';
+import React from 'react';
+import { Switch, Route, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import AddReview from "./components/add-review";
+import MoviesList from "./components/movies-list";
+import Movie from "./components/movie";
+import Login from "./components/login";
+import {Nav, Navbar} from 'react-bootstrap';
 
-//importing components
-import AddReview from "./components/add-review"
-import MoviesList from "./components/movies-list"
-import Movie from "./components/movie"
-import Login from "./components/login"
-//navigation panel
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
 
 function App() {
-  const [user, setUser] = React.useState(null)
+  const [user, setUser] = React.useState(null);
 
   async function login(user = null) {
-    //default user to null (not logged in)
     setUser(user)
   }
   async function logout() {
@@ -33,13 +30,13 @@ function App() {
               <Link to={'/movies'}>Movies</Link>
             </Nav.Link>
             <Nav.Link>
-              {user ? (<a onClick={logout}>Logout User</a>) : (<Link to={"/login"}>Login</Link>)}
+              {user ? (<button onClick={logout}>Logout User</button>) : (<Link to={"/login"}>Login</Link>)}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
-       <Switch>
+      <Switch>
         {/* what displays is the movies list  */}
         <Route exact path={["/", "/movies"]} component={MoviesList}>
         </Route>
@@ -58,7 +55,7 @@ function App() {
           <Login {...props} login={login} />
         }>
         </Route>
-      </Switch> 
+      </Switch>
 
     </div>
   );

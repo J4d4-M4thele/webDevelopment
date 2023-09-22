@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import MovieDataService from "../services/movies"
-import { Link } from "react-router-dom"
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+import React, { useState, useEffect } from 'react';
+import MovieDataService from "../services/movies";
+import { Link } from "react-router-dom";
+import { Form, Button, Col, Row, Container, Card } from 'react-bootstrap';
+
 
 const MoviesList = props => {
 
@@ -15,46 +11,42 @@ const MoviesList = props => {
    const [searchRating, setSearchRating] = useState("")
    const [ratings, setRatings] = useState(["All Ratings"])
 
-   //specifying pages 
-   const [currentPage, setCurrentPage] = useState(0)
-   const [entriesPerPage, setEntriesPerPage] = useState(0)
-
-   //assist in getting next page's movies
-   const [currentSearchMode, setCurrentSearchMode] = useState("")
+   const [currentPage, setCurrentPage] = useState(0);//keep track of current page shown
+   const [entriesPerPage, setEntriesPerPage] = useState(0); //particular page
+   const [currentSearchMode, setCurrentSearchMode] = useState("");//can findByTitle or by Rating
 
    useEffect(() => {
       setCurrentPage(0)
-   }, [currentSearchMode])
+   }, [currentSearchMode])//add useEffect whenever currentSearchMode changes
 
-   //retrieve next page is rendered once only
    useEffect(() => {
-      // retrieveMovies()
-      retrieveNextPage()
-   }, [currentPage])
+      //  retrieveMovies()
+        retrieveNextPage()
+        // eslint-disable-next-line
+     }, [currentPage])//when currentPage changes value: retrieveMovies will be called
+
+     const retrieveNextPage = () => {
+      if (currentSearchMode === "findByTitle")
+         findByTitle()
+      else if (currentSearchMode === "findByRating")
+         findByRating()
+      else
+         retrieveMovies()
+   }
 
    useEffect(() => {
       retrieveMovies()
       retrieveRatings()
+       // eslint-disable-next-line
    }, [])
-   
-   //uses if logic to invoke functions
-   const retrieveNextPage = () => {
-      if(currentSearchMode === 'findByTitle')
-        findByTitle()
-      else if(currentSearchMode === 'findByRating')
-        findByRating()
-      else 
-       retrieveMovies()
-   }
 
+   
    const retrieveMovies = () => {
-      //ch 24
-      setCurrentSearchMode('')
-      MovieDataService.getAll()
+      setCurrentSearchMode("")
+      MovieDataService.getAll(currentPage)
          .then(response => {
             console.log(response.data)
             setMovies(response.data.movies) // assign to movies state
-            //changing pages and number of movies per page
             setCurrentPage(response.data.page)
             setEntriesPerPage(response.data.entries_per_page)
          })
@@ -86,8 +78,8 @@ const MoviesList = props => {
 
 
 
-   const find = (query, by, currentPage) => {
-      MovieDataService.find(query, by)
+   const find = (query, by) => {
+      MovieDataService.find(query, by, currentPage)//addd currentPage argument
          .then(response => {
             console.log(response.data)
             setMovies(response.data.movies)
@@ -98,12 +90,10 @@ const MoviesList = props => {
    }
    // find function sypported by below two methods
    const findByTitle = () => {
-      //ch 24
       setCurrentSearchMode("findByTitle")
-      find(searchTitle, "title")
+      find(searchTitle, "title")// Pass the searchTitle and currentPage to the API call
    }
    const findByRating = () => {
-      //ch 24
       setCurrentSearchMode("findByRating")
       if (searchRating === "All Ratings") {
          retrieveMovies()
@@ -177,17 +167,21 @@ const MoviesList = props => {
                   )
                })}
             </Row>
-         </Container>
-         <br />
-            Showing page : {currentPage}
-            <Button
-               variant='link'
-               onClick={() => { setCurrentPage(currentPage + 1) }}>
-               Get next {entriesPerPage} results
-            </Button>
+
+         </Container><br />
+         Showing page: {currentPage}
+         <Button
+            variant="link"
+            onClick={() => { setCurrentPage(currentPage + 1) }}
+         >
+            Get next {entriesPerPage} results
+         </Button>
       </div>
    );
 }
 
 
 export default MoviesList;
+
+
+
