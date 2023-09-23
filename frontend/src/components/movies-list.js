@@ -15,9 +15,10 @@ const MoviesList = props => {
    const [searchTitle, setSearchTitle] = useState("")
    const [searchRating, setSearchRating] = useState("")
    const [ratings, setRatings] = useState(["All Ratings"])
-
+   //ch 23
    const [currentPage, setCurrentPage] = useState(0);//keep track of current page shown
    const [entriesPerPage, setEntriesPerPage] = useState(0); //particular page
+   //ch 24
    const [currentSearchMode, setCurrentSearchMode] = useState("");//can findByTitle or by Rating
 
    useEffect(() => {
@@ -25,6 +26,7 @@ const MoviesList = props => {
       //page is changed and can be filtered according title etc.
       // eslint-disable-next-line 
    }, [currentSearchMode])
+   //ch 23
 
    //retrieve next page is rendered once only
    useEffect(() => {
@@ -35,6 +37,7 @@ const MoviesList = props => {
    }, [currentPage])
 
    //uses if logic to invoke functions
+   //ch 23
    const retrieveNextPage = () => {
       if (currentSearchMode === 'findByTitle')
          findByTitle()
@@ -53,12 +56,14 @@ const MoviesList = props => {
 
    
    const retrieveMovies = () => {
+      //ch 23
       setCurrentSearchMode("")
       MovieDataService.getAll(currentPage)
          .then(response => {
             console.log(response.data)
             setMovies(response.data.movies) // assign to movies state
             setCurrentPage(response.data.page)
+            //ch 23
             setEntriesPerPage(response.data.entries_per_page)
          })
          .catch(e => {
@@ -90,7 +95,8 @@ const MoviesList = props => {
 
 
    const find = (query, by) => {
-      MovieDataService.find(query, by, currentPage)//addd currentPage argument
+      //ch 23
+      MovieDataService.find(query, by, currentPage)//adding currentPage argument
          .then(response => {
             console.log(response.data)
             setMovies(response.data.movies)
@@ -101,10 +107,12 @@ const MoviesList = props => {
    }
    // find function sypported by below two methods
    const findByTitle = () => {
+      //ch 24
       setCurrentSearchMode("findByTitle")
       find(searchTitle, "title")// Pass the searchTitle and currentPage to the API call
    }
    const findByRating = () => {
+      //ch 24
       setCurrentSearchMode("findByRating")
       if (searchRating === "All Ratings") {
          retrieveMovies()
@@ -180,6 +188,7 @@ const MoviesList = props => {
             </Row>
 
          </Container><br />
+         {/* ch 23 */}
          Showing page: {currentPage}
          <Button
             variant="link"
